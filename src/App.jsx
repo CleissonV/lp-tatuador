@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react'
 import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { FaInstagram, FaWhatsapp, FaTimes, FaBars, FaChevronDown, FaStar, FaMapMarkerAlt, FaClock, FaPhone } from 'react-icons/fa'
-import { GiNeedle, GiInkSwirl } from 'react-icons/gi'
+import { GiPencilBrush, GiInkSwirl } from 'react-icons/gi'
 import { MdOutlineDesignServices } from 'react-icons/md'
 
 const styles = [
@@ -198,7 +198,7 @@ export default function App() {
               href="#agendamento"
               className="group flex items-center gap-3 px-8 py-4 border border-[#e63946] text-[#e63946] text-xs tracking-[0.2em] uppercase font-medium hover:bg-[#e63946] hover:text-white transition-all duration-300"
             >
-              <GiNeedle size={16} /> Agendar Sessão
+              <GiPencilBrush size={16} /> Agendar Sessão
             </a>
             <a
               href="#galeria"
