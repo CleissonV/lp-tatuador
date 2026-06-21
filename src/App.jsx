@@ -13,16 +13,18 @@ const styles = [
   { name: 'Aquarela', desc: 'Explosões de cor que imitam pintura em aquarela. Arte fluida e única em cada traço.', emoji: '🎨' },
 ]
 
-const gallery = [
-  { style: 'Blackwork', bg: 'from-gray-900 to-black', symbol: '☽' },
-  { style: 'Realismo', bg: 'from-gray-800 to-gray-900', symbol: '🐍' },
-  { style: 'Fineline', bg: 'from-zinc-900 to-black', symbol: '🌹' },
-  { style: 'Neo Trad', bg: 'from-neutral-900 to-black', symbol: '⚔️' },
-  { style: 'Old School', bg: 'from-stone-900 to-black', symbol: '⚓' },
-  { style: 'Aquarela', bg: 'from-slate-900 to-black', symbol: '🦋' },
+const tattooImages = [
+  'https://images.unsplash.com/photo-1661714220704-711551e73799?w=600&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1616879564267-a336232e3a95?w=600&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1614199621267-5812fe71d122?w=600&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1651650564239-7e96053d934c?w=600&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1661678147338-7248d49eb887?w=600&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=600&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1605647533135-51b5906087d0?w=600&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1597852075234-fd721ac361d3?w=600&q=80&auto=format&fit=crop',
 ]
 
-const GalleryItem = ({ item, i }) => {
+const GalleryItem = ({ src, i }) => {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true })
   return (
@@ -31,14 +33,10 @@ const GalleryItem = ({ item, i }) => {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={inView ? { opacity: 1, scale: 1 } : {}}
       transition={{ duration: 0.6, delay: i * 0.1 }}
-      className={`ink-card aspect-square bg-gradient-to-br ${item.bg} flex flex-col items-center justify-center group cursor-pointer relative overflow-hidden`}
+      className="ink-card aspect-square cursor-pointer relative overflow-hidden group"
     >
-      <div className="absolute inset-0 bg-[#e63946]/0 group-hover:bg-[#e63946]/10 transition-all duration-500" />
-      <span className="text-6xl mb-3 group-hover:scale-125 transition-transform duration-300">{item.symbol}</span>
-      <span className="text-xs tracking-[0.2em] uppercase text-gray-600 group-hover:text-[#e63946] transition-colors">{item.style}</span>
-      <div className="absolute top-3 right-3 w-6 h-6 border border-[#1a1a1a] group-hover:border-[#e63946] transition-colors flex items-center justify-center">
-        <span className="text-gray-700 group-hover:text-[#e63946] text-xs transition-colors">+</span>
-      </div>
+      <img src={src} alt="tattoo" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+      <div className="absolute inset-0 bg-[#e63946]/0 group-hover:bg-[#e63946]/20 transition-all duration-300" />
     </motion.div>
   )
 }
@@ -133,6 +131,9 @@ export default function App() {
 
       {/* Hero */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
+        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-40">
+          <source src="https://videos.pexels.com/video-files/4124289/4124289-hd_1920_1080_30fps.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-[#1a0a0a] via-[#050505] to-[#050505]" />
           <div
@@ -156,56 +157,62 @@ export default function App() {
           ))}
         </div>
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-          <motion.p
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-[#e63946] tracking-[0.5em] uppercase text-xs mb-6 font-sans font-light"
-          >
-            São Paulo · Est. 2016
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="font-display text-[20vw] md:text-[15vw] lg:text-[180px] leading-none text-[#f1faee] mb-0"
-          >
-            DARK
-          </motion.h1>
-          <motion.h1
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.35 }}
-            className="font-display text-[20vw] md:text-[15vw] lg:text-[180px] leading-none text-[#e63946] mb-0 -mt-6"
-          >
-            INK
-          </motion.h1>
-          <motion.h1
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="font-display text-[10vw] md:text-[7vw] lg:text-[80px] leading-none text-gray-600 -mt-4"
-          >
-            STUDIO
-          </motion.h1>
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.9 }}
-            className="flex flex-col md:flex-row items-start md:items-center gap-6 mt-12"
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            <a
-              href="#agendamento"
-              className="group flex items-center gap-3 px-8 py-4 border border-[#e63946] text-[#e63946] text-xs tracking-[0.2em] uppercase font-medium hover:bg-[#e63946] hover:text-white transition-all duration-300"
+            <motion.p
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-[#e63946] tracking-[0.5em] uppercase text-xs mb-6 font-sans font-light"
             >
-              <GiPencilBrush size={16} /> Agendar Sessão
-            </a>
-            <a
-              href="#galeria"
-              className="text-gray-600 text-xs tracking-widest uppercase hover:text-gray-400 transition-colors flex items-center gap-2"
+              São Paulo · Est. 2016
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="font-display text-[20vw] md:text-[15vw] lg:text-[180px] leading-none text-[#f1faee] mb-0"
             >
-              Ver Galeria <span className="text-[#e63946]">→</span>
-            </a>
+              DARK
+            </motion.h1>
+            <motion.h1
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.35 }}
+              className="font-display text-[20vw] md:text-[15vw] lg:text-[180px] leading-none text-[#e63946] mb-0 -mt-6"
+            >
+              INK
+            </motion.h1>
+            <motion.h1
+              initial={{ opacity: 0, y: 60 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="font-display text-[10vw] md:text-[7vw] lg:text-[80px] leading-none text-gray-600 -mt-4"
+            >
+              STUDIO
+            </motion.h1>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.9 }}
+              className="flex flex-col md:flex-row items-start md:items-center gap-6 mt-12"
+            >
+              <a
+                href="#agendamento"
+                className="group flex items-center gap-3 px-8 py-4 border border-[#e63946] text-[#e63946] text-xs tracking-[0.2em] uppercase font-medium hover:bg-[#e63946] hover:text-white transition-all duration-300"
+              >
+                <GiPencilBrush size={16} /> Agendar Sessão
+              </a>
+              <a
+                href="#galeria"
+                className="text-gray-600 text-xs tracking-widest uppercase hover:text-gray-400 transition-colors flex items-center gap-2"
+              >
+                Ver Galeria <span className="text-[#e63946]">→</span>
+              </a>
+            </motion.div>
           </motion.div>
         </motion.div>
         <motion.div
@@ -229,9 +236,9 @@ export default function App() {
           <p className="text-[#e63946] text-xs tracking-[0.4em] uppercase mb-3">Portfólio</p>
           <h2 className="font-display text-6xl md:text-8xl text-[#f1faee]">GALERIA</h2>
         </motion.div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-          {gallery.map((item, i) => (
-            <GalleryItem key={i} item={item} i={i} />
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+          {tattooImages.map((src, i) => (
+            <GalleryItem key={i} src={src} i={i} />
           ))}
         </div>
       </section>
@@ -287,12 +294,9 @@ export default function App() {
             </div>
           </div>
           <div className="relative">
-            <div className="aspect-[3/4] bg-[#0d0d0d] border border-[#1a1a1a] flex items-center justify-center relative overflow-hidden">
+            <div className="aspect-[3/4] bg-[#0d0d0d] border border-[#1a1a1a] relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1772925660436-277b5b7cff09?w=600&q=80&auto=format&fit=crop" alt="artista" className="w-full h-full object-cover rounded-lg" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent" />
-              <div className="text-center p-8 relative z-10">
-                <div className="font-display text-[120px] text-[#e63946] opacity-10 leading-none">MV</div>
-                <GiInkSwirl className="text-gray-700 mx-auto" size={80} />
-              </div>
               <div className="absolute bottom-6 left-6 right-6">
                 <div className="font-display text-2xl text-[#f1faee]">MARCOS VEIGA</div>
                 <div className="text-[#e63946] text-xs tracking-widest uppercase font-sans mt-1">Artista Principal · Dark Ink Studio</div>
