@@ -1,16 +1,18 @@
 import { useRef, useState, useEffect } from 'react'
 import { motion, useInView, useScroll, useTransform, AnimatePresence } from 'framer-motion'
-import { FaInstagram, FaWhatsapp, FaTimes, FaBars, FaChevronDown, FaStar, FaMapMarkerAlt, FaClock, FaPhone } from 'react-icons/fa'
-import { GiPencilBrush, GiInkSwirl } from 'react-icons/gi'
-import { MdOutlineDesignServices } from 'react-icons/md'
+import { FaInstagram, FaWhatsapp } from 'react-icons/fa'
+import {
+  LuMenu, LuX, LuChevronDown, LuArrowRight, LuStar, LuMapPin, LuClock, LuPhone,
+  LuSquare, LuAnchor, LuPenLine, LuFeather, LuEye, LuDroplets, LuPlus,
+} from 'react-icons/lu'
 
 const styles = [
-  { name: 'Blackwork', desc: 'Traços precisos, sombras densas e geometria impecável. Arte que resiste ao tempo.', emoji: '⬛' },
-  { name: 'Old School', desc: 'Ícones clássicos americanos com cores vibrantes e contornos fortes. Tradição na pele.', emoji: '⚓' },
-  { name: 'Fineline', desc: 'Delicadeza extrema. Linhas finas que criam detalhes fotográficos na pele.', emoji: '🌿' },
-  { name: 'Neo Tradicional', desc: 'Releitura moderna do tradicional. Paleta rica, volumes expressivos, composição narrativa.', emoji: '🦅' },
-  { name: 'Realismo', desc: 'Retratos e naturezas que desafiam a percepção. Cada detalhe milimétrico perfeito.', emoji: '🖤' },
-  { name: 'Aquarela', desc: 'Explosões de cor que imitam pintura em aquarela. Arte fluida e única em cada traço.', emoji: '🎨' },
+  { name: 'Blackwork', desc: 'Traços precisos, sombras densas e geometria impecável. Arte que resiste ao tempo.', icon: LuSquare },
+  { name: 'Old School', desc: 'Ícones clássicos americanos com cores vibrantes e contornos fortes. Tradição na pele.', icon: LuAnchor },
+  { name: 'Fineline', desc: 'Delicadeza extrema. Linhas finas que criam detalhes fotográficos na pele.', icon: LuPenLine },
+  { name: 'Neo Tradicional', desc: 'Releitura moderna do tradicional. Paleta rica, volumes expressivos, composição narrativa.', icon: LuFeather },
+  { name: 'Realismo', desc: 'Retratos e naturezas que desafiam a percepção. Cada detalhe milimétrico perfeito.', icon: LuEye },
+  { name: 'Aquarela', desc: 'Explosões de cor que imitam pintura em aquarela. Arte fluida e única em cada traço.', icon: LuDroplets },
 ]
 
 const tattooImages = [
@@ -50,9 +52,11 @@ const StyleCard = ({ s, i }) => {
       initial={{ opacity: 0, x: -20 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.6, delay: i * 0.1 }}
-      className="ink-card p-6 hover:border-[#e63946] transition-all duration-300 cursor-default"
+      className="ink-card p-6 hover:border-[#e63946] transition-all duration-300 cursor-default group"
     >
-      <div className="text-3xl mb-4">{s.emoji}</div>
+      <span className="inline-flex w-12 h-12 mb-5 items-center justify-center border border-[#1a1a1a] text-[#e63946] group-hover:border-[#e63946] transition-colors">
+        <s.icon size={22} strokeWidth={1.5} />
+      </span>
       <h3 className="font-display text-2xl text-[#f1faee] mb-2">{s.name}</h3>
       <p className="text-gray-600 text-sm leading-relaxed font-sans">{s.desc}</p>
     </motion.div>
@@ -101,7 +105,7 @@ export default function App() {
             </a>
           </div>
           <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-[#e63946]">
-            {menuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+            {menuOpen ? <LuX size={22} /> : <LuMenu size={22} />}
           </button>
         </div>
         <AnimatePresence>
@@ -131,8 +135,12 @@ export default function App() {
 
       {/* Hero */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-40">
-          <source src="https://videos.pexels.com/video-files/4124289/4124289-hd_1920_1080_30fps.mp4" type="video/mp4" />
+        <video
+          autoPlay loop muted playsInline
+          poster="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1920&q=80&auto=format&fit=crop"
+          className="absolute inset-0 w-full h-full object-cover opacity-50"
+        >
+          <source src="https://assets.mixkit.co/videos/44818/44818-1080.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-br from-[#1a0a0a] via-[#050505] to-[#050505]" />
@@ -143,16 +151,15 @@ export default function App() {
           {Array.from({ length: 12 }).map((_, i) => (
             <motion.div
               key={i}
-              className="absolute text-4xl opacity-5 font-display text-[#e63946]"
+              className="absolute text-[#e63946]/10"
               style={{
                 left: `${(i * 37 + 5) % 90}%`,
                 top: `${(i * 53 + 10) % 90}%`,
-                fontSize: `${(i % 3) * 20 + 30}px`
               }}
-              animate={{ y: [0, -20, 0], rotate: [0, 5, -5, 0] }}
-              transition={{ duration: 6 + (i % 4), repeat: Infinity, delay: (i % 3) }}
+              animate={{ y: [0, -20, 0], rotate: [0, 90, 180, 270, 360] }}
+              transition={{ duration: 12 + (i % 5), repeat: Infinity, delay: (i % 3), ease: 'linear' }}
             >
-              {['⬛', '☽', '⚓', '🦅', '🌹', '⚔️'][i % 6]}
+              <LuPlus size={(i % 3) * 14 + 22} strokeWidth={1} />
             </motion.div>
           ))}
         </div>
@@ -204,13 +211,13 @@ export default function App() {
                 href="#agendamento"
                 className="group flex items-center gap-3 px-8 py-4 border border-[#e63946] text-[#e63946] text-xs tracking-[0.2em] uppercase font-medium hover:bg-[#e63946] hover:text-white transition-all duration-300"
               >
-                <GiPencilBrush size={16} /> Agendar Sessão
+                <LuPenLine size={16} /> Agendar Sessão
               </a>
               <a
                 href="#galeria"
-                className="text-gray-600 text-xs tracking-widest uppercase hover:text-gray-400 transition-colors flex items-center gap-2"
+                className="group text-gray-600 text-xs tracking-widest uppercase hover:text-gray-400 transition-colors flex items-center gap-2"
               >
-                Ver Galeria <span className="text-[#e63946]">→</span>
+                Ver Galeria <LuArrowRight size={14} className="text-[#e63946] transition-transform group-hover:translate-x-1" />
               </a>
             </motion.div>
           </motion.div>
@@ -221,7 +228,7 @@ export default function App() {
           transition={{ delay: 1.5 }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2"
         >
-          <FaChevronDown className="text-[#e63946] animate-bounce" />
+          <LuChevronDown className="text-[#e63946] animate-bounce" />
         </motion.div>
       </section>
 
@@ -319,10 +326,10 @@ export default function App() {
               </h2>
               <div className="space-y-4 mb-8">
                 {[
-                  { icon: FaPhone, text: '(11) 94567-8901' },
+                  { icon: LuPhone, text: '(11) 94567-8901' },
                   { icon: FaWhatsapp, text: '(11) 94567-8901 (WhatsApp)' },
-                  { icon: FaMapMarkerAlt, text: 'Rua Augusta, 1440 - Consolação, SP' },
-                  { icon: FaClock, text: 'Seg-Sáb: 10h às 20h' }
+                  { icon: LuMapPin, text: 'Rua Augusta, 1440 - Consolação, SP' },
+                  { icon: LuClock, text: 'Seg-Sáb: 10h às 20h' }
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-4">
                     <div className="w-8 h-8 border border-[#1a1a1a] flex items-center justify-center flex-shrink-0">
@@ -407,7 +414,7 @@ export default function App() {
             >
               <div className="flex gap-1 mb-4">
                 {Array.from({ length: t.stars }).map((_, j) => (
-                  <FaStar key={j} className="text-[#e63946]" size={12} />
+                  <LuStar key={j} className="text-[#e63946] fill-[#e63946]" size={12} />
                 ))}
               </div>
               <p className="text-gray-500 text-sm leading-relaxed font-sans mb-4">"{t.text}"</p>
