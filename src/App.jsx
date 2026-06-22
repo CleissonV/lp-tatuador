@@ -16,11 +16,11 @@ const styles = [
 ]
 
 const tattooImages = [
-  'https://images.unsplash.com/photo-1661714220704-711551e73799?w=600&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1542856391-010fb87dcfed?w=600&q=80&auto=format&fit=crop',
   'https://images.unsplash.com/photo-1616879564267-a336232e3a95?w=600&q=80&auto=format&fit=crop',
   'https://images.unsplash.com/photo-1614199621267-5812fe71d122?w=600&q=80&auto=format&fit=crop',
   'https://images.unsplash.com/photo-1651650564239-7e96053d934c?w=600&q=80&auto=format&fit=crop',
-  'https://images.unsplash.com/photo-1661678147338-7248d49eb887?w=600&q=80&auto=format&fit=crop',
+  'https://images.unsplash.com/photo-1565058379802-bbe93b2f703a?w=600&q=80&auto=format&fit=crop',
   'https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=600&q=80&auto=format&fit=crop',
   'https://images.unsplash.com/photo-1605647533135-51b5906087d0?w=600&q=80&auto=format&fit=crop',
   'https://images.unsplash.com/photo-1597852075234-fd721ac361d3?w=600&q=80&auto=format&fit=crop',
