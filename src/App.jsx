@@ -86,7 +86,10 @@ export default function App() {
       {/* Nav */}
       <nav className={`fixed w-full z-40 transition-all duration-500 ${scrolled ? 'bg-[#050505]/98 backdrop-blur border-b border-[#1a1a1a] py-4' : 'py-6'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <a href="#" className="font-display text-2xl tracking-widest">DARK<span className="text-[#e63946]">INK</span></a>
+          <a href="#" className="flex items-center gap-2 font-display text-2xl tracking-widest">
+            <svg viewBox="0 0 32 32" className="w-5 h-6" fill="#e63946"><path d="M16 4c4 6 8 10 8 15a8 8 0 0 1-16 0c0-5 4-9 8-15Z" /></svg>
+            <span>DARK<span className="text-[#e63946]">INK</span></span>
+          </a>
           <div className="hidden md:flex items-center gap-10">
             {['Galeria', 'Estilos', 'Artista', 'Agendamento'].map(item => (
               <a
