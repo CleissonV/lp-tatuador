@@ -138,12 +138,12 @@ export default function App() {
         <video
           autoPlay loop muted playsInline
           poster="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=1920&q=80&auto=format&fit=crop"
-          className="absolute inset-0 w-full h-full object-cover opacity-50"
+          className="absolute inset-0 w-full h-full object-cover opacity-60"
         >
-          <source src="https://assets.mixkit.co/videos/44818/44818-1080.mp4" type="video/mp4" />
+          <source src="/hero.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#1a0a0a] via-[#050505] to-[#050505]" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1a0a0a]/70 via-[#050505]/45 to-[#050505]/80" />
           <div
             className="absolute inset-0"
             style={{ backgroundImage: 'radial-gradient(circle at 70% 50%, rgba(230,57,70,0.08) 0%, transparent 50%)' }}
